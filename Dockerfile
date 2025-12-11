@@ -27,4 +27,4 @@ COPY --from=frontend /app/frontend/dist ./staticfiles
 RUN python manage.py collectstatic --noinput || true
 
 EXPOSE 8000
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "ats_platform.wsgi:application"]
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-8000} ats_platform.wsgi:application"]
