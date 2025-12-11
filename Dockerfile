@@ -3,6 +3,7 @@ FROM node:18-alpine AS frontend
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm install
+COPY templates /app/templates
 COPY frontend/ .
 RUN npm run build
 
