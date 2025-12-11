@@ -26,9 +26,11 @@ COPY --from=frontend /app/frontend/dist ./staticfiles
 
 RUN python manage.py collectstatic --noinput || true
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 8000
 ENV PORT=8000
 
-# Use shell form CMD to ensure PORT variable expansion works
-# Railway sets PORT automatically, this ensures it's used correctly
-CMD exec gunicorn ats_platform.wsgi:application --bind "0.0.0.0:${PORT:-8000}" --workers 3
+# Use entrypoint script to handle PORT variable correctly
+ENTRYPOINT ["/entrypoint.sh"]
