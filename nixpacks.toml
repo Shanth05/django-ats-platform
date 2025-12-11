@@ -1,0 +1,13 @@
+[phases.setup]
+nixPkgs = ["python311", "nodejs-18_x", "pip"]
+
+[phases.install]
+cmds = [
+  "pip install --upgrade pip",
+  "pip install -r requirements.txt",
+  "cd frontend && npm install && npm run build && cd ..",
+  "python manage.py collectstatic --noinput"
+]
+
+[start]
+cmd = "gunicorn ats_platform.wsgi:application --bind 0.0.0.0:$PORT"
