@@ -11,14 +11,27 @@ if (fs.existsSync(distPath)) {
     fs.mkdirSync(staticfilesPath, { recursive: true });
   }
 
-  const assetsPath = path.join(distPath, 'assets');
-  const staticAssetsPath = path.join(staticfilesPath, 'assets');
-  if (fs.existsSync(assetsPath)) {
-    if (fs.existsSync(staticAssetsPath)) {
-      fs.rmSync(staticAssetsPath, { recursive: true, force: true });
+const copyDir = (src, dest) => {
+  if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
+  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      copyDir(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
     }
-    fs.cpSync(assetsPath, staticAssetsPath, { recursive: true });
   }
+};
+
+const assetsPath = path.join(distPath, 'assets');
+const staticAssetsPath = path.join(staticfilesPath, 'assets');
+if (fs.existsSync(assetsPath)) {
+  if (fs.existsSync(staticAssetsPath)) {
+    fs.rmSync(staticAssetsPath, { recursive: true, force: true });
+  }
+  copyDir(assetsPath, staticAssetsPath);
+}
 
   if (fs.existsSync(viteIndexPath)) {
     let content = fs.readFileSync(viteIndexPath, 'utf8');
