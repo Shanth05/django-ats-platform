@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "ATS Platform - Applicant Tracking System",
   "scripts": {
+    "build": "cd frontend && npm install && npm run build",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "engines": {
