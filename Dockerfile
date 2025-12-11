@@ -26,6 +26,8 @@ COPY --from=frontend /app/frontend/dist ./staticfiles
 
 RUN python manage.py collectstatic --noinput || true
 
+# Railway sets PORT automatically, so no need to hardcode your own
 EXPOSE 8000
-ENV PORT=8000
-CMD gunicorn --bind 0.0.0.0:$PORT --workers 3 ats_platform.wsgi:application
+
+# IMPORTANT FIX — Use shell so $PORT expands
+CMD sh -c "gunicorn ats_platform.wsgi:application --bind 0.0.0.0:${PORT} --workers 3"
