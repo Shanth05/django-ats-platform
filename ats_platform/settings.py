@@ -106,4 +106,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
 ]
 
+if not DEBUG:
+    CORS_ALLOWED_ORIGINS.extend([
+        "https://*.up.railway.app",
+        "https://*.onrender.com",
+        "https://*.herokuapp.com",
+    ])
+
 CORS_ALLOW_CREDENTIALS = True
