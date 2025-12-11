@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { applicationsApi, Application } from '../api/applications'
 import Card from '../components/Card'
-import Button from '../components/Button'
 import { Search } from 'lucide-react'
 
 const STATUS_COLORS: { [key: string]: string } = {

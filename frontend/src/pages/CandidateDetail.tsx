@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { candidatesApi, Candidate } from '../api/candidates'
 import Card from '../components/Card'
-import Button from '../components/Button'
 import { ArrowLeft, Mail, Phone, Linkedin, Globe, FileText } from 'lucide-react'
 
 export default function CandidateDetail() {

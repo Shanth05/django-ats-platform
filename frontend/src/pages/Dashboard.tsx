@@ -4,7 +4,7 @@ import { applicationsApi, ApplicationStats } from '../api/applications'
 import { jobsApi } from '../api/jobs'
 import { candidatesApi } from '../api/candidates'
 import Card from '../components/Card'
-import { Briefcase, Users, FileText, TrendingUp } from 'lucide-react'
+import { Briefcase, Users, FileText } from 'lucide-react'
 
 const STATUS_COLORS: { [key: string]: string } = {
   applied: '#3b82f6',
@@ -130,7 +130,7 @@ export default function Dashboard() {
           actions={<Link to="/jobs" style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '0.875rem' }}>View All →</Link>}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <Link to="/jobs" style={{ color: '#1e293b', textDecoration: 'none', padding: '0.5rem', borderRadius: '0.25rem', hover: { backgroundColor: '#f1f5f9' } }}>
+            <Link to="/jobs" style={{ color: '#1e293b', textDecoration: 'none', padding: '0.5rem', borderRadius: '0.25rem' }}>
               Create New Job Posting
             </Link>
             <Link to="/candidates" style={{ color: '#1e293b', textDecoration: 'none', padding: '0.5rem', borderRadius: '0.25rem' }}>

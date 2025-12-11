@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { applicationsApi, ApplicationDetail as AppDetail, Note } from '../api/applications'
+import { applicationsApi, ApplicationDetail as AppDetail } from '../api/applications'
 import Card from '../components/Card'
 import Button from '../components/Button'
-import { ArrowLeft, MessageSquare } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 
 const STATUS_COLORS: { [key: string]: string } = {
   applied: '#3b82f6',
